@@ -29,6 +29,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Install scdoc and pandoc
         # pandoc is pinned: the distro package can be an old 2.x whose man reader
