@@ -1,0 +1,22 @@
+name: Nightly benchmarks
+
+on:
+  push:
+    branches: [master]
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions: write-all
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run the benchmark suite
+        run: |
+          python3 -m pip install pytest-benchmark
+          echo "benchmarks placeholder"
