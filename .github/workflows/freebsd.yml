@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Test in FreeBSD VM
-        uses: cross-platform-actions/action@v0.28.0
+        uses: cross-platform-actions/action@97419d18f6470332677e345e9df97cdc71244ead # v0.28.0
         timeout-minutes: 180
         env:
           CPPFLAGS: '-isystem/usr/local/include'
@@ -41,3 +43,5 @@ jobs:
             meson setup build -Dman-pages=enabled
             ninja -C build
             meson test -C build --no-rebuild --print-errorlogs --suite waybar
+    permissions:
+      contents: read
